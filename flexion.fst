@@ -23,9 +23,9 @@ $SPELLOUT$ = $R0$ || $R1$
 % insertion of character separators and sign numbers seems to be *impossible*
 % so we work with a representation that strips off all
 
-ALPHABET = [\-A-Za-z0-9éú]  k:[k<>]
-$k#$ = \
-      k <=> k (.:[aeiou])
+% ALPHABET = [\-A-Za-z0-9éú]  k:[k<>]
+% $k#$ = \
+%      k <=> k (.:[aeiou])
 
 ALPHABET = [\-A-Za-z0-9éú]  m:[m<>] n:[n<>]
 $n$ =   [mn] <=> <> (.:n)
@@ -33,12 +33,13 @@ $n$ =   [mn] <=> <> (.:n)
 ALPHABET = [\-A-Za-z0-9éú]  m:[m<>] n:[n<>]
 $r$ =   [mn] <=> <> (.:r)
 
-$TRANSLIT$ = $k#$ || $n$ || $r$
+$TRANSLIT$ = $n$ || $r$
 
 % morphological rules: generating deep morphology
 
 % Define a transducer for case endings
-$NCASE$ = <GEN>:{ak}
+% There can be multiple case endings in Sumerian
+$NCASE$ = <GEN>:{ak}? <ABL>:{ta}?
 $CASE$ = <ABS>:{0} | <ERG>:{e} | $NCASE$
 
 % rudimentary verbal morphology

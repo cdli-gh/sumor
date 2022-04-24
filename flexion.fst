@@ -23,9 +23,13 @@ $SPELLOUT$ = $R0$ || $R1$
 % insertion of character separators and sign numbers seems to be *impossible*
 % so we work with a representation that strips off all
 
-% ALPHABET = [\-A-Za-z0-9éú]  k:[k<>]
-% $k#$ = \
-%      k <=> k (.:[aeiou])
+ ALPHABET = [\-A-Za-z0-9éú]  k:[k<>]
+ $k#$ = \
+      k <=> k (.:[aeiou])
+
+ ALPHABET = [\-A-Za-z0-9éú]  g:[g<>]
+ $g#$ = \
+      g <=> g (.:[aeiou])
 
 ALPHABET = [\-A-Za-z0-9éú]  m:[m<>] n:[n<>]
 $n$ =   [mn] <=> <> (.:n)
@@ -33,7 +37,11 @@ $n$ =   [mn] <=> <> (.:n)
 ALPHABET = [\-A-Za-z0-9éú]  m:[m<>] n:[n<>]
 $r$ =   [mn] <=> <> (.:r)
 
-$TRANSLIT$ = $n$ || $r$
+ALPHABET = [\-A-Za-z0-9éú]  a:[a<>]
+$gen$ = \
+     a <=> <> (.:ka)
+
+$TRANSLIT$ = $gen$ || $g#$ || $k#$ || $n$ || $r$
 
 % morphological rules: generating deep morphology
 

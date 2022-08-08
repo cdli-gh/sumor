@@ -1,0 +1,41 @@
+# generated with the following command:
+#	$> python3 cdli2test.py to_dict/P100065.conll
+
+# to_dict/P100065.conll
+ten 1(u) 1(u)
+unit gig gin2
+silver kugbabbar ku3-babbar
+month iti iti
+Minesz<ABL> Minesz=ta min-esz3-ta
+day ud u4
+one<GEN><COP-3-SG> 5(disz)=ak=am 5(disz)-am3
+pass<PT> zal=a zal-la
+Lugalhegal Lugalhegal lugal-he2-gal2
+<FIN><L1><3-SG-NH-P>weigh<3-SG-A><SUB> i=ni=b=la=e=a in-la2-e-a
+<3-SG-NH><L3><3-SG-H-A>speak<3-SG-P> b=i=n=dug=ø bi2-in-du11
+if tukumbi tukum-bi
+<NEG><3-SG-NH-A>weigh<3-SG-P><SUB> nu=b=la=e=a nu-la2
+ten 2(u) 2(u)
+barley sze sze
+unit gur gur
+king<GEN><ABS> lugal=ak=ø lugal
+<FIN><3-SG-HN-P>measure<3-SG-A><SUB> i=b=ag=e=a i3-ag2-e-a
+name mu mu
+king<GEN><ABS> lugal=ak=ø lugal
+<FIN><3-SG-H-A>name<3-SG-P> i=n=pad=ø in-pa3
+eye igi igi
+Atu<GEN><TERM> Atu=ak=sze a-tu-sze3
+eye igi igi
+Abbagina<GEN><TERM> Abbagina=ak=sze ab-ba-gi-na-sze3
+eye igi igi
+Lugalnesage<GEN><TERM> Lugalnesage=ak=sze lugal-nesag-e-sze3
+month iti iti
+Minesz<L1> Minesz='a min-esz3
+year mu mu
+Ibbisuen<ABS> Ibbisuen=ø {d}i-bi2-{d}suen
+king<ABS> lugal=ø lugal
+Lugalhegal Lugalhegal lugal-he2-gal2
+scribe dubsar dub-sar
+child dumu dumu
+Urnigar<GEN> Urnigar=ak ur-nigar{gar}
+

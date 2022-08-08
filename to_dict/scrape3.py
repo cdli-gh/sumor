@@ -131,34 +131,43 @@ if __name__=="__main__":
                 output.write("\t".join([v,t,m])+"\n")
             # tbc: space or tab as delimiter?
 
+        output=os.path.join(args.tgt,"flexion.fst")
+        if os.path.exists(output):
+            raise Exception(f"output file {output} found, remove before running!")
+        with open(output,"wt") as output:
+            output.write("% organize this into rules !!! these are right hand side replacements, only\n")
+            for t,e in sorted(set(zip(tag,end))):
+                 output.write(f"\t<{t}>:{{{e}}}\n")
+
+
     ## Printing for testing
     if args.tgt==None:
         out=sys.stdout
 
-    '''
-    out.write("*****NOUN HERE*****")
-    for a in range(0, len(noun)):
-        out.write(noun[a], "\t\t", nmean[a])
-    out.write("\n*****VERB BELOW*******")
-    for b in range(0, len(verb)):
-        out.write(verb[b], "\t", vmean[b])
-    out.write("\n*****END BELOW*******\n")
-    for x in range(len(end)):
-        out.write(end[x], "\t", tag[x])
-    '''
+        '''
+        out.write("*****NOUN HERE*****")
+        for a in range(0, len(noun)):
+            out.write(noun[a], "\t\t", nmean[a])
+        out.write("\n*****VERB BELOW*******")
+        for b in range(0, len(verb)):
+            out.write(verb[b], "\t", vmean[b])
+        out.write("\n*****END BELOW*******\n")
+        for x in range(len(end)):
+            out.write(end[x], "\t", tag[x])
+        '''
 
-    ## Print to use in the `dict` file
-    out.write("\n*****NOUN DICT*****\n")
-    for a in range(0, len(noun)):
-        out.write(noun[a]+"\t"+ntag[a]+"\t"+nmean[a]+"\n")
-    out.write("\n*****VERB DICT*******\n")
-    for b in range(0, len(verb)):
-        out.write(verb[b]+"\tV\t"+vmean[b]+"\n")
+        ## Print to use in the `dict` file
+        out.write("\n*****NOUN DICT*****\n")
+        for a in range(0, len(noun)):
+            out.write(noun[a]+"\t"+ntag[a]+"\t"+nmean[a]+"\n")
+        out.write("\n*****VERB DICT*******\n")
+        for b in range(0, len(verb)):
+            out.write(verb[b]+"\tV\t"+vmean[b]+"\n")
 
 
-    ## Print for use in the `flexion` file
-    out.write("\n*****END FLEXION*******\n")
-    for x in range(len(end)):
-        out.write(f"<{tag[x]}>:{{{end[x]}}}\n")
+        ## Print for use in the `flexion` file
+        out.write("\n*****END FLEXION*******\n")
+        for x in range(len(end)):
+            out.write(f"<{tag[x]}>:{{{end[x]}}}\n")
 
     out.write(f'\nNo. of Nouns: {len(noun)} Verbs: {len(verb)} Ends: {len(end)}\n')

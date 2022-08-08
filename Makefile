@@ -12,7 +12,7 @@ test_cdli:
 	#		fst-mor flexion.a
 	
 	#  test on CDLI files
-	cut -f " " -f 1,3 test_cdli.tsv | python3 analyze.py YOUR_flexion.a_HERE -d YOUR_dict.tsv_HERE
+	cut -f " " -f 1,3 test.cdli.tsv | python3 analyze.py YOUR_flexion.a_HERE -d YOUR_dict.tsv_HERE
 	## use -f 1,2 to evaluate morphological forms, but thenm lexicon, etc., must be adapted
 
 test: all

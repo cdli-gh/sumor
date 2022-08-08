@@ -116,10 +116,25 @@ if __name__=="__main__":
                             ## out.write('length not equal', seg, xpos)
                          # out.write("line: ", index, " file", file)
 
+    # write proto-FST files in the target directory
+    if args.tgt!=None:
+        if not os.path.exists(args.tgt):
+            os.makedirs(args.tgt)
+        output=os.path.join(args.tgt,"dict.tsv")
+        if os.path.exists(output):
+            raise Exception(f"output file {output} found, remove before running!")
+        with open(output,"wt") as output:
+            for n,t,m in sorted(set(zip(noun,ntag,nmean))):
+                output.write("\t".join([n,t,m])+"\n")
+            for v,m in sorted(set(zip(verb,vmean))):
+                t="V"
+                output.write("\t".join([v,t,m])+"\n")
+            # tbc: space or tab as delimiter?
+
+    ## Printing for testing
     if args.tgt==None:
         out=sys.stdout
 
-    ## Printing for testing
     '''
     out.write("*****NOUN HERE*****")
     for a in range(0, len(noun)):

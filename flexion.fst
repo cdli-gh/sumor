@@ -23,21 +23,21 @@ $SPELLOUT$ = $R0$ || $R1$
 % insertion of character separators and sign numbers seems to be *impossible*
 % so we work with a representation that strips off all
 
- ALPHABET = [\-A-Za-z0-9ø\']  k:[k<>]
+ ALPHABET = [\-A-Za-z0-9ø']  k:[k<>]
  $k#$ = \
       k <=> k (.:[aeiou])
 
- ALPHABET = [\-A-Za-z0-9ø\']  g:[g<>]
+ ALPHABET = [\-A-Za-z0-9ø']  g:[g<>]
  $g#$ = \
       g <=> g (.:[aeiou])
 
-ALPHABET = [\-A-Za-z0-9ø\']  m:[m<>] n:[n<>]
+ALPHABET = [\-A-Za-z0-9ø']  m:[m<>] n:[n<>]
 $n$ =   [mn] <=> <> (.:n)
 
-ALPHABET = [\-A-Za-z0-9ø\']  m:[m<>] n:[n<>]
+ALPHABET = [\-A-Za-z0-9ø']  m:[m<>] n:[n<>]
 $r$ =   [mn] <=> <> (.:r)
 
-ALPHABET = [\-A-Za-z0-9ø\']  a:[a<>]
+ALPHABET = [\-A-Za-z0-9ø']  a:[a<>]
 $gen$ = \
      a <=> <> (.:ka)
 

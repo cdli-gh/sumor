@@ -12,12 +12,12 @@ test_cdli:
 	#		fst-mor flexion.a
 	
 	#  test on CDLI files
-	cut -f " " -f 1,3 test.cdli.tsv | python3 analyze.py YOUR_flexion.a_HERE -d YOUR_dict.tsv_HERE
-	## use -f 1,2 to evaluate morphological forms, but thenm lexicon, etc., must be adapted
+	cut -f " " -f 1,3 test.cdli.tsv | python3 analyze.py flexion.a -d test.dict.tsv
+	## use -f 1,2 to evaluate morphological forms, but then lexicon, etc., must be adapted
 
 test: all
 #		fst-generate flexion.a
 #		cat lexicon | perl -pe 's/\s+/ /g;'
 #		echo;
 #		fst-mor flexion.a
-	cut -d ' ' -f 1,3 test.tsv | python3 analyze.py
+	cut -d ' ' -f 1,3 test.cdli.tsv | python3 analyze.py

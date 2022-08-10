@@ -98,6 +98,6 @@ $GENERATE$ = \
 % Apply the two level rules
 % we actually do three levels: transliteration
 % The result transducer is stored in the output file
-$GENERATE$ || $SPELLOUT$  || $TRANSLIT$
+$GENERATE$ || $SPELLOUT$  %|| $TRANSLIT$
 
 % skip $SPELLOUT$ to generate deep morphology from features

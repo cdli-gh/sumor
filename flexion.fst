@@ -11,10 +11,10 @@ $WORDS$ = "lexicon"
 % remove empty morphemes
 %$R0$ = {\=0}<=><>
 
-ALPHABET = [\-A-Za-z0-9ø\'] [\.\=0]:<>
+ALPHABET = [\-A-Za-z0-9ø'\(\)] [\.\=0]:<>
 $R0$ = (\=:<>) 0<=><>
 
-ALPHABET = [\=A-Za-z0-9ø\'] [\.\-0]:<>
+ALPHABET = [\=A-Za-z0-9ø'\(\)] [\.\-0]:<>
 $R1$ = (\-:<>) 0<=><>
 
 $SPELLOUT$ = $R0$ || $R1$
@@ -23,21 +23,21 @@ $SPELLOUT$ = $R0$ || $R1$
 % insertion of character separators and sign numbers seems to be *impossible*
 % so we work with a representation that strips off all
 
- ALPHABET = [\-A-Za-z0-9ø']  k:[k<>]
+ ALPHABET = [\-A-Za-z0-9ø'\(\)]  k:[k<>]
  $k#$ = \
       k <=> k (.:[aeiou])
 
- ALPHABET = [\-A-Za-z0-9ø']  g:[g<>]
+ ALPHABET = [\-A-Za-z0-9ø'\(\)]  g:[g<>]
  $g#$ = \
       g <=> g (.:[aeiou])
 
-ALPHABET = [\-A-Za-z0-9ø']  m:[m<>] n:[n<>]
+ALPHABET = [\-A-Za-z0-9ø'\(\)]  m:[m<>] n:[n<>]
 $n$ =   [mn] <=> <> (.:n)
 
-ALPHABET = [\-A-Za-z0-9ø']  m:[m<>] n:[n<>]
+ALPHABET = [\-A-Za-z0-9ø'\(\)]  m:[m<>] n:[n<>]
 $r$ =   [mn] <=> <> (.:r)
 
-ALPHABET = [\-A-Za-z0-9ø']  a:[a<>]
+ALPHABET = [\-A-Za-z0-9ø'\(\)]  a:[a<>]
 $gen$ = \
      a <=> <> (.:ka)
 
@@ -48,7 +48,7 @@ $TRANSLIT$ = $gen$ || $g#$ || $k#$ || $n$ || $r$
 % Define a transducer for case endings
 % There can be multiple case endings in Sumerian
 $NCASE$ = <GEN>:{ak}? <ABL>:{ta}?
-$CASE$ = <ABS>:{0} | <ERG>:{e} | $NCASE$
+$CASE$ = <ABS>:{ø} | <ERG>:{e} | $NCASE$
 
 % rudimentary verbal morphology
 % http://oracc.museum.upenn.edu/etcsri/parsing/index.html#VPT

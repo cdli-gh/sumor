@@ -49,6 +49,8 @@ sfst.init(args.fst)
 sys.stderr.write("generate> ")
 sys.stderr.flush()
 
+correct = 0
+total = 0
 for line in sys.stdin:
     line=line.strip()
     if not line.startswith("#") and len(line)>0:
@@ -56,6 +58,7 @@ for line in sys.stdin:
         if len(line.split())>1:
             gold=line.split()[1]
             line=line.split()[0]
+            total += 1
         gloss=re.sub(r"<[^>]*>","",line)
         if gloss in en2sums:
             for sum in en2sums[gloss]:
@@ -74,9 +77,12 @@ for line in sys.stdin:
                                     if lemma in analysis:
                                         result=analysis[0:analysis.index(lemma)]+sum2en[lemma]+analysis[analysis.index(lemma)+len(lemma):]
                                         break
+                            if amatch != "*":
+                                correct += 1
                             print("\t "+form+"\t"+str(gold)+"\t"+amatch+analysis+"\t"+result)
         if gold!=None:
             sys.stdout.write("\n")
         sys.stderr.write("generate> ")
         sys.stderr.flush()
+sys.stderr.write(f'Total analysis: {total}, Correct analysis: {correct}\n')
 sys.stderr.write("bye!\n")

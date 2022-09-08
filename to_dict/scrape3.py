@@ -35,7 +35,8 @@ def delB(x):
     
 def delBr(l):
     a = l.replace('[', '')
-    return a.replace(']', '')
+    b = a.replace(']', '')
+    return b.replace(' ', '') # TODO: TBC if this is necessary
 
 end = []; tag = []
 noun = []; verb = []; end = []
@@ -68,7 +69,7 @@ def insertWord(p, r):
         if not (noun.count(a[0]) > 0 and nmean.count(a[1]) > 0) and len(a[0]) > 1:
             ##out.write(a)
             noun.append(a[0])
-            if len(a) >= 2 and w != 'PN':
+            if len(a) >= 2 and (w != 'PN' or (delBr(a[1]) != '1' and delBr(a[1]) != '1')):
                 nmean.append(a[1])
             else:
                 nmean.append(a[0])

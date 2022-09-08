@@ -1,6 +1,14 @@
 import sfst
 import sys,os,re,traceback,argparse
 
+def norm_cdli(string):
+    """ return NOUN or VERB for CDLI tag """
+    if string.endswith("N"):
+        return "NOUN"
+    if string.startswith("V") or string.startswith("NU") or string.startswith("NF.V"):
+        return "VERB"
+    return string
+
 fst="flexion.a"
 dicts=["dict.tsv"]
 
@@ -21,11 +29,11 @@ for file in args.dicts:
     # print(file)
     with open(file,"r") as input:
         for line in input:
-            line=line.strip()
+            line=re.sub(r"\s+"," ",line.strip())
             fields=line.split()
             # print(fields)
-            if len(fields)>2:
-                sum=fields[0]+"<"+fields[1]+">"
+            if not line.startswith("#") and len(fields)>2:
+                sum=fields[0]+"<"+norm_cdli(fields[1])+">"
                 en=fields[2]
                 if not en in en2sums:
                     en2sums[en] = [sum]
@@ -34,13 +42,15 @@ for file in args.dicts:
                 if not sum in sum2en:
                     sum2en[sum]= en
 
-# print(en2sums)
-# print(sum2en)
+print(en2sums)
+print(sum2en)
 
 sfst.init(args.fst)
 sys.stderr.write("generate> ")
 sys.stderr.flush()
 
+correct = 0
+total = 0
 for line in sys.stdin:
     line=line.strip()
     if not line.startswith("#") and len(line)>0:
@@ -48,8 +58,8 @@ for line in sys.stdin:
         if len(line.split())>1:
             gold=line.split()[1]
             line=line.split()[0]
+            total += 1
         gloss=re.sub(r"<[^>]*>","",line)
-        print(gloss)
         if gloss in en2sums:
             for sum in en2sums[gloss]:
                 key=line[0:line.index(gloss)]+sum+line[line.index(gloss)+len(gloss):]
@@ -67,7 +77,12 @@ for line in sys.stdin:
                                     if lemma in analysis:
                                         result=analysis[0:analysis.index(lemma)]+sum2en[lemma]+analysis[analysis.index(lemma)+len(lemma):]
                                         break
+                            if amatch != "*":
+                                correct += 1
                             print("\t "+form+"\t"+str(gold)+"\t"+amatch+analysis+"\t"+result)
+        if gold!=None:
+            sys.stdout.write("\n")
         sys.stderr.write("generate> ")
         sys.stderr.flush()
+sys.stderr.write(f'Total analysis: {total}, Correct analysis: {correct}\n')
 sys.stderr.write("bye!\n")

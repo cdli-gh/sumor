@@ -2,6 +2,29 @@
 
 Toy grammar based on Jagersma, Chap.5, built with SFST. Note that this follows some Jagersma conventions that you won't find in ETCSRI or CDLI. In particular, morphological segmentation is marked by either `=` (nouns) or `-` (verbs).
 
+## Quickstart
+
+Run
+
+    $> make
+
+to compile the fst grammar.
+
+Under Python, then
+
+    import sfst
+    sfst.init(flexion.a)
+
+    input=["ensike", "é"]
+
+    for form in input:
+        for analysis in sfst.analyse(form):
+            print(form,"=>",analysis)
+
+Note that we do not support transcripts as input yet, but require transliterations. The library will be considered operational if it is able to process `input=["ensi2-ke4", "e2"]`, instead.
+
+## Description
+
 On Ubuntu, this requires the [`sfst` package](https://launchpad.net/ubuntu/xenial/+package/sfst) to be installed.
 For other systems, see [the Apertium wiki](https://wiki.apertium.org/wiki/SFST). General documentation on [Helmut Schmid's SFST page](https://www.cis.uni-muenchen.de/~schmid/tools/SFST/). Sources on [GitHub](https://github.com/santhoshtr/sfst).
 

@@ -66,6 +66,7 @@ For evaluation, you can optionally provide a "gold" surface form. Only if the pr
 
 ## Known issues
 
+- Support for transliterations as input is imperfect.
 - At the moment, only the bidictionary defines the part of speech. This means that `$GENERATE$` will always
 attempt to return both verbal and nominal analyses.
 - `$GENERATE$` does not do full nominal slots, but only (selected) cases
@@ -76,8 +77,11 @@ attempt to return both verbal and nominal analyses.
 
 ## History
 
+- 2022-11-30: experimental support for transliterations in `experimental/` [CC]
+- 2022-04-17 - 2022-10-09 GSoC-2022 project: revision and extension [MS]
 - 2021-11-21 created: basic setup, 3 roots [CC]
 
 ## Contributors
 
-CC - Christian Chiarcos, GU Frankfurt
+CC - Christian Chiarcos, GU Frankfurt / U Cologne
+MS - [Mohammad Sameer](https://github.com/m-sameer)

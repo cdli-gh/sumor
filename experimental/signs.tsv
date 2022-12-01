@@ -1,0 +1,62 @@
+# this is where the magic lies ;)
+# map signs to syllables or words
+# for final-only syllable renderings, you can use $
+# otherwise, characters are always followed by -
+
+# note: brackets for numbers don't work, filtered out in signs2fst.py
+
+# cols: SIGN<TAB>READING
+1(u)-	1(u)
+2(u)-	2(u)
+5(disz)-	5(disz)
+a-	a
+ab-	ab
+ag2-	ag
+ba-	ba
+babbar-	babbar
+bi-	bi
+bi2-	bi
+du11-	dug
+dub-	dub
+dumu-	dumu
+e-	e
+esz3-	esz
+gal2-	gal
+gi-	gi
+gin2-	gig
+gur-	gur
+he2-	he
+i-	ib
+i-	i
+i3-	ib
+i-	i
+in-	ini
+in-	in
+iti-	iti
+ku3-	kug
+la-	la
+la2-	bla
+la2-	la
+lugal-	lugal
+min-	min
+mu-	mu
+na-	na
+nesag-	nesag
+nigar-	nigar
+nu-	nu
+pa3-	pad
+pa3-	pa
+sar-	sar
+suen-	suen
+sze-	sze
+sze3-	sze
+ta-	ta
+tu-	tu
+tukum-	tukum
+u4-	ud
+ur-	ur
+zal-	zal
+
+# tbc
+ra$	rak
+a$ 	ak

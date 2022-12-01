@@ -1,30 +1,4 @@
-ALPHABET=[a-zA-Z0-9\-\=]
-
-% this is where the magic lies ;)
-% map signs to syllables or words
-% for final-only syllable renderings, you can use $
-% otherwise, characters are always followed by -
-$syll2sign$ = \
-    {ensik}:{ENSI6$} | \
-    {ensi}:{ENSI6\-} | \
-    {ke}:{ke\-} | \
-    {ka}:{ka\-} | \
-    {kak}:{ka$} | \
-    {mun}:{mu\-} |\
-    {mu}:{mu\-} 
-
-$WRITE$ = \
-    $syll2sign$*
-
-% works
-% $WRITE$*
-
-$OLD_MORPH$ = \
-    (.:. | \
-    <ABS>:<> | \
-    <DAT>:{\=a} | \
-    <GEN>:{\=ak}| \
-    <ERG>:{\=e})*
+ALPHABET=[a-zA-Z0-9_]
 
 $ROOT$ = [a-z0-9\-]+
 
@@ -51,7 +25,7 @@ $JOIN$ = \
     \=:<>)*
 
 % convert MTAAC-style annotations to SFST-style annotations
-$PREP$ =\
+$OLD_PREP$ =\
     ([a-z0-9]:[a-z0-9] | \
     {/N}:{/N} | \
     {\.ABS}:<ABS> | \
@@ -65,4 +39,4 @@ $CLEANUP$ = \
     ([a-z0-9A-Z]:[a-z0-9A-Z]) \
     (\$:<> | \-:<>)?
 
-$PREP$ || $MORPH$ || $JOIN$ || $WRITE$ || $CLEANUP$
+$MORPH$ || [a-zA-Z0-9=]+ || $JOIN$ || "<orth.a>"

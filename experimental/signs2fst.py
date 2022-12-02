@@ -51,4 +51,4 @@ $CLEANUP$ = \
     (\$:<> | \-:<>)?
 """)
 
-print("$syll2sign$* || $CLEANUP$")
+print('"<length.a>"'+" || $syll2sign$* || $CLEANUP$ ")

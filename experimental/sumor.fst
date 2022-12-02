@@ -1,6 +1,12 @@
 ALPHABET=[a-zA-Z0-9_]
 
-$ROOT$ = [a-z0-9\-]+
+$WORD$= "../lexicon"
+
+% analyze unseen words => great search space!!!
+%$ROOT$ = [a-z0-9\-]+
+
+% analyze known words only
+$ROOT$=$WORD$
 
 % adnominal cases: these are special in that they are likely to be iterated
 $NCASE$ = \

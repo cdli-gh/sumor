@@ -34,32 +34,47 @@ for file in args.dicts:
                 if not sum in sum2en:
                     sum2en[sum]= en
 
-print(list(en2sums.items())[0])
-print(list(sum2en.items())[0])
+# print(list(en2sums.items())[0])
+# print(list(sum2en.items())[0])
 
 sfst.init(args.fst)
 sys.stderr.write("generate> ")
 sys.stderr.flush()
 
-correct = 0
+correct=0
+processable = 0
 total = 0
+total_gold=0
 for line in sys.stdin:
     line=line.strip()
     if len(line)==0:
         break
     if not line.startswith("#"):
         gold=None
-        if len(line.split())>1:
-            gold=line.split()[1]
-            line=line.split()[0]
-            total += 1
+        fields=line.split("\t")
+        if len(fields)>1:
+            gold=fields[1].strip()
+            line=fields[0]
+        line=line.strip()
+        if len(line)==0:
+            line=gold
+            gold=None
+        print(gold,line)
+
         gloss=re.sub(r"<[^>]*>","",line)
         if gloss in en2sums:
+
             for sum in en2sums[gloss]:
-                print(sum)
                 key=line[0:line.index(gloss)]+sum+line[line.index(gloss)+len(gloss):]
                 print(key)
-                for form in sfst.generate(key):
+                total += 1
+                if gold!=None:
+                    total_gold+=1
+                is_correct=False
+                forms=sfst.generate(key)
+                if gold in forms:
+                    correct+=1
+                for form in forms:
                     if gold!=None and form!=gold and re.sub(r"[^a-z]","",form)!=re.sub(r"[^a-z]","",gold):
                         print("\t*"+form+" ("+gold+")")
                     else:
@@ -74,10 +89,17 @@ for line in sys.stdin:
                                         result=analysis[0:analysis.index(lemma)]+sum2en[lemma]+analysis[analysis.index(lemma)+len(lemma):]
                                         break
                             if amatch != "*":
-                                correct += 1
+                                is_correct=True
                             print("\t "+form+"\t"+str(gold)+"\t"+amatch+analysis+"\t"+result)
+                if is_correct:
+                    processable+=1
         if gold!=None:
             sys.stdout.write("\n")
         sys.stderr.write("generate> ")
         sys.stderr.flush()
-sys.stderr.write(f'Total analysis: {total}, Correct analysis: {correct}\n')
+if total>0:
+    sys.stderr.write(f'coverage: {processable} ({int(0.5+processable*100.0/total)}%)')
+    if total_gold>0:
+        sys.stderr.write(f', correct: {correct}/{total_gold} ({int(0.5+correct*100.0/total_gold)}%)')
+sys.stderr.write("\n")
+sys.stderr.flush()

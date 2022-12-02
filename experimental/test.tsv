@@ -1,0 +1,16 @@
+# my "gold" examples need to be double-checked, 
+# very possible that Sumerian actually writes dub-sar-ra ;)
+# note: no new lines in that file !
+#       use commented lines (#), instead
+#
+scribe	dub-sar
+scribe<ABS>	dub-sar
+#
+# not sure which of these is correct: -ra or -a
+scribe<DAT>	dub-sar-a
+scribe<GEN>	dub-sar-a
+scribe<DAT>	dub-sar-ra
+scribe<GEN>	dub-sar-ra
+#
+# not sure which of these is correct: -re or -e
+scribe<ERG>	dub-sar-e

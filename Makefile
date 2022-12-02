@@ -1,5 +1,5 @@
 all:
-		cut -d " " -f 1 dict.tsv > lexicon
+		cut -f 1 dict.tsv > lexicon
 		fst-compiler-utf8 flexion.fst flexion.a
 
 test_cdli:

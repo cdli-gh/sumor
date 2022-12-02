@@ -18,3 +18,23 @@ build with
 test with
 
 	`make test`
+
+## Building the sign list
+
+Key to this enterprise is to extend `signs.tsv`.
+
+In order to do that, process one or more CDLI-CoNLL files and return transcriptions that cannot be reproduced. Then, extend `signs.tsv` manually.
+
+To evaluate against `P100065.conll`, as an example:
+
+- build transducers
+
+		make
+
+- write log to `transcript.log`:
+
+		python3 P100065.conll > transcript.log
+
+Check manually.
+
+Note that not all errors returned are to be addressed in `signs.tsv`. As a rule of thumb, if entire syllables are left implicit in the writing, do not try to fix that. Frequenly, the morpheme `=ak` (for genitive case) isn't written, but put into annotation. 
